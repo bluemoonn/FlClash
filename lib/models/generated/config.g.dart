@@ -221,8 +221,7 @@ const _$ProxyCardTypeEnumMap = {
 
 _$ThemePropsImpl _$$ThemePropsImplFromJson(Map<String, dynamic> json) =>
     _$ThemePropsImpl(
-      primaryColor:
-          (json['primaryColor'] as num?)?.toInt() ?? defaultPrimaryColor,
+      primaryColor: (json['primaryColor'] as num?)?.toInt(),
       primaryColors: (json['primaryColors'] as List<dynamic>?)
               ?.map((e) => (e as num).toInt())
               .toList() ??
@@ -287,9 +286,8 @@ _$ConfigImpl _$$ConfigImplFromJson(Map<String, dynamic> json) => _$ConfigImpl(
       vpnProps: json['vpnProps'] == null
           ? defaultVpnProps
           : VpnProps.fromJson(json['vpnProps'] as Map<String, dynamic>?),
-      themeProps: json['themeProps'] == null
-          ? defaultThemeProps
-          : ThemeProps.fromJson(json['themeProps'] as Map<String, dynamic>?),
+      themeProps:
+          ThemeProps.safeFromJson(json['themeProps'] as Map<String, Object?>?),
       proxiesStyle: json['proxiesStyle'] == null
           ? defaultProxiesStyle
           : ProxiesStyle.fromJson(

@@ -1863,7 +1863,7 @@ class __$$ThemePropsImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ThemePropsImpl implements _ThemeProps {
   const _$ThemePropsImpl(
-      {this.primaryColor = defaultPrimaryColor,
+      {this.primaryColor,
       final List<int> primaryColors = defaultPrimaryColors,
       this.themeMode = ThemeMode.dark,
       this.schemeVariant = DynamicSchemeVariant.tonalSpot,
@@ -1874,7 +1874,6 @@ class _$ThemePropsImpl implements _ThemeProps {
       _$$ThemePropsImplFromJson(json);
 
   @override
-  @JsonKey()
   final int? primaryColor;
   final List<int> _primaryColors;
   @override
@@ -1988,6 +1987,7 @@ mixin _$Config {
   DAV? get dav => throw _privateConstructorUsedError;
   NetworkProps get networkProps => throw _privateConstructorUsedError;
   VpnProps get vpnProps => throw _privateConstructorUsedError;
+  @JsonKey(fromJson: ThemeProps.safeFromJson)
   ThemeProps get themeProps => throw _privateConstructorUsedError;
   ProxiesStyle get proxiesStyle => throw _privateConstructorUsedError;
   WindowProps get windowProps => throw _privateConstructorUsedError;
@@ -2017,7 +2017,7 @@ abstract class $ConfigCopyWith<$Res> {
       DAV? dav,
       NetworkProps networkProps,
       VpnProps vpnProps,
-      ThemeProps themeProps,
+      @JsonKey(fromJson: ThemeProps.safeFromJson) ThemeProps themeProps,
       ProxiesStyle proxiesStyle,
       WindowProps windowProps,
       ClashConfig patchClashConfig});
@@ -2214,7 +2214,7 @@ abstract class _$$ConfigImplCopyWith<$Res> implements $ConfigCopyWith<$Res> {
       DAV? dav,
       NetworkProps networkProps,
       VpnProps vpnProps,
-      ThemeProps themeProps,
+      @JsonKey(fromJson: ThemeProps.safeFromJson) ThemeProps themeProps,
       ProxiesStyle proxiesStyle,
       WindowProps windowProps,
       ClashConfig patchClashConfig});
@@ -2329,7 +2329,7 @@ class _$ConfigImpl implements _Config {
       this.dav,
       this.networkProps = defaultNetworkProps,
       this.vpnProps = defaultVpnProps,
-      this.themeProps = defaultThemeProps,
+      @JsonKey(fromJson: ThemeProps.safeFromJson) required this.themeProps,
       this.proxiesStyle = defaultProxiesStyle,
       this.windowProps = defaultWindowProps,
       this.patchClashConfig = defaultClashConfig})
@@ -2374,7 +2374,7 @@ class _$ConfigImpl implements _Config {
   @JsonKey()
   final VpnProps vpnProps;
   @override
-  @JsonKey()
+  @JsonKey(fromJson: ThemeProps.safeFromJson)
   final ThemeProps themeProps;
   @override
   @JsonKey()
@@ -2464,7 +2464,8 @@ abstract class _Config implements Config {
       final DAV? dav,
       final NetworkProps networkProps,
       final VpnProps vpnProps,
-      final ThemeProps themeProps,
+      @JsonKey(fromJson: ThemeProps.safeFromJson)
+      required final ThemeProps themeProps,
       final ProxiesStyle proxiesStyle,
       final WindowProps windowProps,
       final ClashConfig patchClashConfig}) = _$ConfigImpl;
@@ -2489,6 +2490,7 @@ abstract class _Config implements Config {
   @override
   VpnProps get vpnProps;
   @override
+  @JsonKey(fromJson: ThemeProps.safeFromJson)
   ThemeProps get themeProps;
   @override
   ProxiesStyle get proxiesStyle;
