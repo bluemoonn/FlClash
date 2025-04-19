@@ -558,12 +558,10 @@ class SuperGridState extends State<SuperGrid> with TickerProviderStateMixin {
           _itemContexts[index] = context;
           final childWhenDragging = ActivateBox(
             child: Opacity(
-              opacity: 0.3,
+              opacity: 0.6,
               child: _sizeBoxWrap(
                 CommonCard(
-                  child: Container(
-                    color: context.colorScheme.secondaryContainer,
-                  ),
+                  child: child,
                 ),
                 index,
               ),
@@ -666,8 +664,7 @@ class SuperGridState extends State<SuperGrid> with TickerProviderStateMixin {
                   crossAxisSpacing: widget.crossAxisSpacing,
                   mainAxisSpacing: widget.mainAxisSpacing,
                   children: [
-                    for (int i = 0; i < children.length; i++)
-                      _builderItem(i),
+                    for (int i = 0; i < children.length; i++) _builderItem(i),
                   ],
                 );
               },
