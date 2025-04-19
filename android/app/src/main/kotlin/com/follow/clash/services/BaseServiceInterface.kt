@@ -57,7 +57,6 @@ fun Service.createFlClashNotificationBuilder(): Deferred<NotificationCompat.Buil
             setContentTitle("FlClash")
             setContentIntent(pendingIntent)
             setCategory(NotificationCompat.CATEGORY_SERVICE)
-            priority = NotificationCompat.FOREGROUND_SERVICE_IMMEDIATE
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
                 foregroundServiceBehavior = FOREGROUND_SERVICE_IMMEDIATE
             }
