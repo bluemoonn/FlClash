@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:animations/animations.dart';
+import 'package:dynamic_color/dynamic_color.dart';
 import 'package:fl_clash/clash/clash.dart';
 import 'package:fl_clash/common/theme.dart';
 import 'package:fl_clash/enum/enum.dart';
@@ -31,6 +32,7 @@ class GlobalState {
   Function? updateCurrentDelayDebounce;
   late Measure measure;
   late CommonTheme theme;
+  Color? dynamicColor;
   DateTime? startTime;
   UpdateTasks tasks = [];
   final navigatorKey = GlobalKey<NavigatorState>();
@@ -55,6 +57,7 @@ class GlobalState {
       traffics: FixedList(30),
       totalTraffic: Traffic(),
     );
+    dynamicColor = await DynamicColorPlugin.getAccentColor();
     await init();
   }
 

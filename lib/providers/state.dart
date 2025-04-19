@@ -1,6 +1,7 @@
 import 'package:fl_clash/common/common.dart';
 import 'package:fl_clash/enum/enum.dart';
 import 'package:fl_clash/models/models.dart';
+import 'package:fl_clash/state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -521,15 +522,12 @@ ColorScheme genColorScheme(
       ),
     ),
   );
-  if (color == null && (isOverride == true || vm2.a == null)) {
-    final colorSchemes = ref.watch(appSchemesProvider);
-    return colorSchemes.getColorSchemeForBrightness(
-      brightness,
-      vm2.b,
-    );
+  Color? seedColor = color;
+  if (seedColor == null && (isOverride == true || vm2.a == null)) {
+    seedColor = globalState.dynamicColor;
   }
   return ColorScheme.fromSeed(
-    seedColor: color ?? Color(vm2.a!),
+    seedColor: seedColor ?? Color(vm2.a!),
     brightness: brightness,
     dynamicSchemeVariant: vm2.b,
   );

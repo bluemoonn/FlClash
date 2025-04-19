@@ -362,10 +362,6 @@ class AppController {
     }
   }
 
-  updateSystemColorSchemes(ColorSchemes colorSchemes) {
-    _ref.read(appSchemesProvider.notifier).value = colorSchemes;
-  }
-
   savePreferences() async {
     commonPrint.log("save preferences");
     await preferences.saveConfig(globalState.config);

@@ -1765,7 +1765,7 @@ class _GetProfileOverrideDataProviderElement
   String get profileId => (origin as GetProfileOverrideDataProvider).profileId;
 }
 
-String _$genColorSchemeHash() => r'a27ccae9b5c11d47cd46804f42f8e9dc7946a6c2';
+String _$genColorSchemeHash() => r'a5c4d547a7cb75d6b272b76af7c22a14719d0000';
 
 /// See also [genColorScheme].
 @ProviderFor(genColorScheme)
