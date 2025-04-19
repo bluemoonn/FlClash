@@ -10,6 +10,7 @@ import 'package:fl_clash/plugins/service.dart';
 import 'package:fl_clash/widgets/dialog.dart';
 import 'package:fl_clash/widgets/scaffold.dart';
 import 'package:flutter/material.dart';
+import 'package:material_color_utilities/palettes/core_palette.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -32,7 +33,8 @@ class GlobalState {
   Function? updateCurrentDelayDebounce;
   late Measure measure;
   late CommonTheme theme;
-  Color? dynamicColor;
+  late Color accentColor;
+  CorePalette? corePalette;
   DateTime? startTime;
   UpdateTasks tasks = [];
   final navigatorKey = GlobalKey<NavigatorState>();
@@ -57,8 +59,15 @@ class GlobalState {
       traffics: FixedList(30),
       totalTraffic: Traffic(),
     );
-    dynamicColor = await DynamicColorPlugin.getAccentColor();
+    await _initDynamicColor();
     await init();
+  }
+
+  _initDynamicColor() async {
+    try {
+      corePalette = await DynamicColorPlugin.getCorePalette();
+      accentColor = await DynamicColorPlugin.getAccentColor() ?? Color(defaultPrimaryColor);
+    } catch (_) {}
   }
 
   init() async {
