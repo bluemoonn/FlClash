@@ -16,6 +16,7 @@ import com.follow.clash.MainActivity
 import com.follow.clash.R
 import com.follow.clash.extensions.getActionPendingIntent
 import com.follow.clash.models.VpnOptions
+import io.flutter.Log
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.Dispatchers
@@ -75,12 +76,15 @@ fun Service.startForeground(notification: Notification) {
         val manager = getSystemService(NotificationManager::class.java)
         var channel = manager?.getNotificationChannel(GlobalState.NOTIFICATION_CHANNEL)
         if (channel == null) {
+            Log.d("[FlClash]","createNotificationChannel===>")
             channel = NotificationChannel(
                 GlobalState.NOTIFICATION_CHANNEL, "FlClash", NotificationManager.IMPORTANCE_LOW
             )
             manager?.createNotificationChannel(channel)
         }
     }
+
+    Log.d("[FlClash]","startForeground===>")
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
         try {
             startForeground(

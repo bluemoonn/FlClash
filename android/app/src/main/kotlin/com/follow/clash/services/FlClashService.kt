@@ -12,9 +12,6 @@ import com.follow.clash.models.VpnOptions
 
 
 class FlClashService : Service(), BaseServiceInterface {
-    private suspend fun notificationBuilder(): NotificationCompat.Builder {
-        return createFlClashNotificationBuilder().await()
-    }
 
     override fun start(options: VpnOptions) = 0
 
@@ -24,7 +21,15 @@ class FlClashService : Service(), BaseServiceInterface {
             stopForeground(STOP_FOREGROUND_REMOVE)
         }
     }
+    
+    private var cachedBuilder: NotificationCompat.Builder? = null
 
+    private suspend fun notificationBuilder(): NotificationCompat.Builder {
+        if (cachedBuilder == null) {
+            cachedBuilder = createFlClashNotificationBuilder().await()
+        }
+        return cachedBuilder!!
+    }
 
     @SuppressLint("ForegroundServiceType")
     override suspend fun startForeground(title: String, content: String) {

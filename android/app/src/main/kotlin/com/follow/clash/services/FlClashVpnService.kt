@@ -1,6 +1,7 @@
 package com.follow.clash.services
 
 import android.annotation.SuppressLint
+import android.app.PendingIntent
 import android.content.Intent
 import android.net.ProxyInfo
 import android.net.VpnService
@@ -118,8 +119,13 @@ class FlClashVpnService : VpnService(), BaseServiceInterface {
         }
     }
 
+    private var cachedBuilder: NotificationCompat.Builder? = null
+
     private suspend fun notificationBuilder(): NotificationCompat.Builder {
-        return createFlClashNotificationBuilder().await()
+        if (cachedBuilder == null) {
+            cachedBuilder = createFlClashNotificationBuilder().await()
+        }
+        return cachedBuilder!!
     }
 
     @SuppressLint("ForegroundServiceType")
