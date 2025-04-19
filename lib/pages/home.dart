@@ -129,6 +129,14 @@ class _HomePageViewState extends ConsumerState<_HomePageView> {
       controller: _pageController,
       physics: const NeverScrollableScrollPhysics(),
       itemCount: navigationItems.length,
+      onPageChanged: (index) {
+        WidgetsBinding.instance.addPostFrameCallback((_){
+          if (_pageIndex != index) {
+            final pageLabel = navigationItems[index].label;
+            globalState.appController.toPage(pageLabel);
+          }
+        });
+      },
       itemBuilder: (_, index) {
         final navigationItem = navigationItems[index];
         return KeepScope(

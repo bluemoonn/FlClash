@@ -3,6 +3,7 @@ import 'package:fl_clash/pages/scan.dart';
 import 'package:fl_clash/state.dart';
 import 'package:fl_clash/widgets/widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class AddProfile extends StatelessWidget {
   final BuildContext context;
@@ -104,8 +105,13 @@ class _URLFormDialogState extends State<URLFormDialog> {
           runSpacing: 16,
           children: [
             TextField(
-              maxLines: 5,
+              keyboardType: TextInputType.url,
               minLines: 1,
+              maxLines: 5,
+              onSubmitted: (_) {
+                _handleAddProfileFormURL();
+              },
+              onEditingComplete: _handleAddProfileFormURL,
               controller: urlController,
               decoration: InputDecoration(
                 border: const OutlineInputBorder(),
